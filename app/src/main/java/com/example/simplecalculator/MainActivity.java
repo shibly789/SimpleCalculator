@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button b1,b2,b3,b4,b5,b6,b7,b8,b9,b0,badd,bsub,bmul,bdiv,bclr,beql;
+    private Button b1, b2, b3, b4, b5, b6, b7, b8, b9, b0, badd, bsub, bmul, bdiv, bclr, beql;
     private TextView result;
     //double num1,num2;
     // boolean add,sub,mul,div;
@@ -192,18 +192,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                }
 //            }
 //        });
-        bclr.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                result.setText(null);
-            }
-        });
+//        bclr.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                result.setText(null);
+//            }
+//        });
 
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btn0:
                 appendNumberAfterClick("0");
                 break;
@@ -251,10 +251,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 resetValues();
                 break;
             case R.id.btnequal:
-                if(!firstValue.equals("") && !secondValue.equals("") && !operator.equals("")){
+                if (!firstValue.equals("") && !secondValue.equals("") && !operator.equals("")) {
                     calculate(operator);
                     resetValues();
-                } else{
+                } else {
                     Toast.makeText(this, "Something went wrong! do a proper way", Toast.LENGTH_SHORT).show();
                 }
                 break;
@@ -270,31 +270,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    private void appendNumberAfterClick(String number){
-        if(hasOperator){
+    private void appendNumberAfterClick(String number) {
+        if (hasOperator) {
             secondValue += number;
             result.setText(secondValue);
-        } else{
+        } else {
             firstValue += number;
             result.setText(firstValue);
         }
     }
 
-    private void clickOperator(String op){
-        if(!firstValue.equals("") && !secondValue.equals("")){
+    private void clickOperator(String op) {
+        if (!firstValue.equals("") && !secondValue.equals("")) {
             calculate(op);
-        } else if(!firstValue.equals("")){
+        } else if (!firstValue.equals("")) {
             operator = op;
             hasOperator = true;
-        } else{
+        } else {
             Toast.makeText(this, "Type a number first!", Toast.LENGTH_SHORT).show();
         }
     }
 
 
     // when click the calculate button/operator button after added to operand
-    private void calculate(String operator){
-        switch (operator){
+    private void calculate(String operator) {
+        switch (operator) {
             case "+":
                 result.setText(String.valueOf(Double.parseDouble(firstValue) + Double.parseDouble(secondValue)));
                 break;
@@ -305,15 +305,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 result.setText(String.valueOf(Double.parseDouble(firstValue) * Double.parseDouble(secondValue)));
                 break;
             case "/":
-                if(!secondValue.equals("0")) {
+                if (!secondValue.equals("0")) {
                     result.setText(String.valueOf(Double.parseDouble(firstValue) / Double.parseDouble(secondValue)));
-                } else{
+                } else {
                     result.setText("Cannot divided by zero");
                 }
                 break;
         }
     }
-
 
 
 }
